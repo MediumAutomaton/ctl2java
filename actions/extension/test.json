@@ -1,0 +1,33 @@
+{
+  "Version": 1,
+
+  "Season": "test",
+
+  "Bases": [
+    "test"
+  ],
+
+  "Actions": {
+
+    "ExtensionAction": {
+      "Type": "Button",
+      "Parameters": {
+        "Offset": {
+          "Type": "double",
+          "Value": 0.1
+        }
+      },
+      "Code": [
+        "// START Extension Action",
+        "<~base:ModifierActionOne>",
+        "<~base:ModifierActionTwo>",
+        "if ( <~myname>.isActive() ) {",
+        "\tstate.setActionTwo( state.getActionTwo() + <~param:Offset> );",
+        "\tset = true;",
+        "}",
+        "// END Extension Action"
+      ]
+    }
+
+  }
+}

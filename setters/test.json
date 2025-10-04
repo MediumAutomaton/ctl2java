@@ -1,0 +1,18 @@
+{
+    "Version": 1,
+
+    "Season" : "test",
+
+    "Interface" : "<~tc>.framework.ctlpad.CTL2Java.test.TestSchemeInterface",
+
+    "State" : "<~tc>.framework.ctlpad.CTL2Java.test.TestSchemeState",
+
+    "Imports": [],
+
+    "Setters" : [
+        "<~dt>setActionOne",
+        "setActionTwo",
+        "setModifierActionOne",
+        "setModifierActionTwo"
+    ]
+}

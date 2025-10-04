@@ -1,0 +1,56 @@
+{
+  "Version": 1,
+
+  "Season": "fy23",
+
+  "Actions": {
+
+    "Pivot": {
+      "Type": "Axis",
+      "SafetyMultiplier": 1.0,
+      "Code": [
+        "if ( !pivotSet && Math.abs( <~myname>.value() ) > 0.05 ) {",
+        "\tstate.setArmMovement( <~myname>.value() );",
+        "\tpivotSet = true;",
+        "}"
+      ]
+    },
+
+    "Extend": {
+      "Type": "Axis",
+      "SafetyMultiplier": 1.0,
+      "Code": [
+        "if ( !extendSet && Math.abs( <~myname>.value() ) > 0.05 ) {",
+        "\tstate.setElevatorMovement( <~myname>.value() );",
+        "\textendSet = true;",
+        "}"
+      ]
+    },
+
+    "Open Claw": {
+      "Type": "Button",
+      "Code": [
+        "if ( !clawSet && <~myname>.isActive() ) {",
+        "\tstate.setClawState( Claw.State.OPEN );",
+        "}"
+      ]
+    },
+
+    "Close Claw": {
+      "Type": "Button",
+      "Code": [
+        "if ( !clawSet && <~myname>.isActive() ) {",
+        "\tstate.setClawState( Claw.State.CLOSED );",
+        "}"
+      ]
+    },
+
+    "Launch Drone": {
+      "Type": "Button",
+      "Code": [
+        "state.setLaunchPlane( <~myname>.isActive() );"
+      ]
+    }
+
+  }
+}

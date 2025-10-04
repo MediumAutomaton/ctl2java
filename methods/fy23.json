@@ -1,0 +1,40 @@
+{
+  "Version": 1,
+  "Season": "fy23",
+  "Bases": [
+    "fy23"
+  ],
+  "Extensions": [],
+  "Methods": {
+    "setArmMovement": [
+      "void setArmMovement() {",
+      "\tboolean pivotSet = false;",
+      "<~all:Pivot>",
+      "\tif ( !pivotSet ) {",
+      "\t\tstate.setArmMovement( 0.0 );",
+      "\t}",
+      "}"
+    ],
+    "setElevatorMovement": [
+      "void setElevatorMovement() {",
+      "\tboolean extendSet = false;",
+      "<~all:Extend>",
+      "\tif ( !extendSet ) {",
+      "\t\tstate.setElevatorMovement( 0.0 );",
+      "\t}",
+      "}"
+    ],
+    "setClawState": [
+      "void setClawState() {",
+      "boolean clawSet = false;",
+      "<~all:Open Claw>",
+      "<~all:Close Claw>",
+      "}"
+    ],
+    "setLaunchPlane": [
+      "void setLaunchPlane() {",
+      "<~all:Launch Drone>",
+      "}"
+    ]
+  }
+}

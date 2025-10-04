@@ -1,0 +1,49 @@
+{
+  "Version": 1,
+  "Season": "",
+  "Bases": [
+    "strafer"
+  ],
+  "Extensions": [],
+  "Methods": {
+    "<~indy>setDts": [
+      "void setDts() {",
+      "\tdouble drive = 0;",
+      "\tboolean driveSet = false;",
+      "<~all:Drive>",
+      "\t",
+      "\tdouble turn = 0;",
+      "\tboolean turnSet = false;",
+      "<~all:Turn>",
+      "\t",
+      "\tdouble strafe = 0;",
+      "\tboolean strafeSet = false;",
+      "<~all:Strafe>",
+      "\t",
+      "\tstate.setDts( new DTS( drive, turn, strafe ) );",
+      "}"
+    ],
+    "<~fieldy>setDts": [
+      "void setDts() {",
+      "\tdouble drive = 0;",
+      "\tboolean driveSet = false;",
+      "<~all:Drive>",
+      "\t",
+      "\tdouble turn = 0;",
+      "\tboolean turnSet = false;",
+      "<~all:Turn>",
+      "\t",
+      "\tdouble strafe = 0;",
+      "\tboolean strafeSet = false;",
+      "<~all:Strafe>",
+      "\t",
+      "\tstate.setDts( new DTS( drive, turn, strafe ).rotate(imu.yaw()) );",
+      "}"
+    ],
+    "setMaxDriveSpeed": [
+      "void setMaxDriveSpeed() {",
+      "<~all:Change Max. Drive Power>",
+      "}"
+    ]
+  }
+}

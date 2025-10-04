@@ -1,0 +1,43 @@
+Holding down a Modifier button should activate a whole separate control scheme.
+So your CTL file would look like:
+
+Modifier1
+    Button1
+        Action1
+    Button2
+        Action2
+Modifier2
+    Button1
+        Action3
+    Button2
+        Action4
+Default
+    Button1
+        Action5
+    Button2
+        Action6
+
+And your generated code would look like:
+switch (activeModifier) {
+    case Modifier1:
+        switch (activeButton) {
+            case Button1:
+                Action1
+            case Button2:
+                Action2
+        }
+    case Modifier2:
+        switch (activeButton) {
+            case Button1:
+                Action3
+            case Button2:
+                Action4
+        }
+    default:
+        switch (activeButton) {
+            case Button1:
+                Action5
+            case Button2:
+                Action6
+        }
+}

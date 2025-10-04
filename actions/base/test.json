@@ -1,0 +1,56 @@
+{
+  "Version": 1,
+
+  "Season": "test",
+
+  "Actions": {
+
+    "ActionOne": {
+      "Type": "Button",
+      "Code": [
+        "// START ActionOne",
+        "state.setActionOne( <~myname>.isActive() );",
+        "// END ActionOne"
+      ]
+    },
+
+    "ActionTwo": {
+      "Type": "Axis",
+      "Parameters": {
+        "Multiplier": {
+          "Type": "double",
+          "Value": 0.5
+        }
+      },
+      "Code": [
+        "// START ActionTwo",
+        "state.setActionTwo( <~myname>.value() * <~param:Multiplier> );",
+        "// END ActionTwo"
+      ]
+    },
+
+    "ModifierActionOne": {
+      "Type": "Button",
+      "Code": [
+        "// START ModifierActionOne",
+        "if ( !set ) {",
+        "\tstate.setModifierActionOne( <~myname>.isActive() );",
+        "\tif ( <~myname>.isActive() ) {",
+        "\t\tset = true;",
+        "\t}",
+        "}",
+        "// END ModifierActionOne"
+      ]
+    },
+
+    "ModifierActionTwo": {
+      "Type": "Button",
+      "Code": [
+        "// START ModifierActionTwo",
+        "state.setModifierActionTwo( <~myname>.isActive() );",
+        "// END ModifierActionTwo"
+      ]
+    }
+
+  }
+}

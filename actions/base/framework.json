@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Season": "",
+  "Actions": {
+    "Square Up": {
+      "Type": "Button",
+      "Code": [
+        "state.setSquareUp( <~myname>.isActive() );"
+      ]
+    }
+  }
+}

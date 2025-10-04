@@ -1,0 +1,50 @@
+{
+  "Version": 1,
+
+  "Season": "test",
+
+  "Bases": [
+    "test"
+  ],
+
+  "Extensions": [
+    "test"
+  ],
+
+  "Methods": {
+    "<~indy>setActionOne": [
+      "void setActionOne() {",
+      "<~all:ActionOne>",
+      "\t// Indy Drive Type",
+      "}"
+    ],
+
+    "<~fieldy>setActionOne": [
+      "void setActionOne() {",
+      "<~all:ActionOne>",
+      "\t// Fieldy Drive Type",
+      "}"
+    ],
+
+    "setActionTwo": [
+      "void setActionTwo() {",
+      "<~all:ActionTwo>",
+      "}"
+    ],
+
+    "setModifierActionOne": [
+      "void setModifierActionOne() {",
+      "\tboolean set = false;",
+      "<~all:ModifierActionOne>",
+      "<~all:ExtensionAction>",
+      "}"
+    ],
+
+    "setModifierActionTwo": [
+      "void setModifierActionTwo() {",
+      "<~all:ModifierActionTwo>",
+      "}"
+    ]
+
+  }
+}

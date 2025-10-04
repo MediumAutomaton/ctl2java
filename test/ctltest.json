@@ -1,0 +1,179 @@
+﻿
+{
+    "Version": "1",
+    "Gamepad": "1",
+    "Season": "test",
+    "Positions": {
+        "DPad": {
+            "X": "-232",
+            "Y": "51"
+        },
+        "A": {
+            "X": "53",
+            "Y": "29"
+        },
+        "B": {
+            "X": "90",
+            "Y": "65"
+        },
+        "X": {
+            "X": "14",
+            "Y": "65"
+        },
+        "Y": {
+            "X": "53",
+            "Y": "101"
+        },
+        "Start": {
+            "X": "-41",
+            "Y": "84"
+        },
+        "Select": {
+            "X": "-140",
+            "Y": "84"
+        },
+        "PS": {
+            "X": "-92",
+            "Y": "84"
+        },
+        "R1": {
+            "X": "52",
+            "Y": "141"
+        },
+        "R2": {
+            "X": "52",
+            "Y": "167"
+        },
+        "L1": {
+            "X": "-229",
+            "Y": "141"
+        },
+        "L2": {
+            "X": "-229",
+            "Y": "167"
+        },
+        "LS": {
+            "X": "-151",
+            "Y": "-10"
+        },
+        "RS": {
+            "X": "-27",
+            "Y": "-10"
+        }
+    },
+    "Modifiers": [
+        "X",
+        "Y"
+    ],
+    "Buttons": {
+        "A": {
+            "Default": {
+                "Type": "Momentary",
+                "Action": [
+                    "ActionOne",
+                    {
+                        "Type": "Button",
+                        "Description": "A Button",
+                        "Safety Multiplier": "1"
+                    }
+                ]
+            },
+            "X": {
+                "Type": "Toggle",
+                "Action": [
+                    "ModifierActionOne",
+                    {
+                        "Type": "Button",
+                        "Description": "A Button meant to be mapped to a Modifier"
+                    }
+                ]
+            },
+            "Y": {
+                "Type": "Momentary",
+                "Action": [
+                    "ModifierActionTwo",
+                    {
+                        "Type": "Button",
+                        "Description": "A Button meant to be mapped to a Modifier"
+                    }
+                ]
+            }
+        },
+        "B": {
+            "Default": {
+                "Type": "Momentary",
+                "Action": [
+                    "ExtensionAction",
+                    {
+                        "Type": "Button",
+                        "Description": "An Extension Action. A Button.",
+                        "Parameters": {
+                            "Offset": {
+                                "Type": "double",
+                                "Value": "0.2"
+                            }
+                        }
+                    }
+                ]
+            }
+        }
+    },
+    "Axes": {
+        "LSX": {
+            "Default": {
+                "Type": "",
+                "Scaling": "1.0",
+                "Action": ""
+            }
+        },
+        "RSX": {
+            "Default": {
+                "Type": "",
+                "Scaling": "1.0",
+                "Action": ""
+            }
+        },
+        "LSY": {
+            "Default": {
+                "Type": "",
+                "Scaling": "1.0",
+                "Action": ""
+            }
+        },
+        "RSY": {
+            "Default": {
+                "Type": "",
+                "Scaling": "1.0",
+                "Action": ""
+            }
+        },
+        "R2": {
+            "Default": {
+                "Type": "Linear",
+                "Scaling": "0.5",
+                "Action": [
+                    "ActionTwo",
+                    {
+                        "Type": "Axis",
+                        "Description": "An Axis",
+                        "Safety Multiplier": "1",
+                        "Parameters": {
+                            "Multiplier": {
+                                "Type": "double",
+                                "Value": "0.25"
+                            }
+                        }
+                    }
+                ]
+            }
+        },
+        "L2": {
+            "Default": {
+                "Type": "",
+                "Scaling": "1.0",
+                "Action": ""
+            }
+        }
+    },
+    "Actions": {}
+}

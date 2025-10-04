@@ -1,0 +1,229 @@
+﻿{
+    "Version": "1",
+    "Gamepad": "1",
+    "Season": "fy23",
+    "Positions": {
+        "DPad": {
+            "X": "-232",
+            "Y": "51"
+        },
+        "A": {
+            "X": "53",
+            "Y": "29"
+        },
+        "B": {
+            "X": "90",
+            "Y": "65"
+        },
+        "X": {
+            "X": "14",
+            "Y": "65"
+        },
+        "Y": {
+            "X": "53",
+            "Y": "101"
+        },
+        "Start": {
+            "X": "-41",
+            "Y": "84"
+        },
+        "Select": {
+            "X": "-140",
+            "Y": "84"
+        },
+        "PS": {
+            "X": "-92",
+            "Y": "84"
+        },
+        "R1": {
+            "X": "52",
+            "Y": "141"
+        },
+        "R2": {
+            "X": "52",
+            "Y": "167"
+        },
+        "L1": {
+            "X": "-229",
+            "Y": "141"
+        },
+        "L2": {
+            "X": "-229",
+            "Y": "167"
+        },
+        "LS": {
+            "X": "-151",
+            "Y": "-10"
+        },
+        "RS": {
+            "X": "-27",
+            "Y": "-10"
+        }
+    },
+    "Modifiers": [
+        "Y"
+    ],
+    "Buttons": {
+        "R1": {
+            "Default": {
+                "Type": "Momentary",
+                "Action": [
+                    "Launch Drone",
+                    {
+                        "Type": "Button",
+                        "Description": "Launch the drone. This should really be a Momentary button."
+                    }
+                ]
+            }
+        },
+        "L1": {
+            "Default": {
+                "Type": "Trigger",
+                "Action": [
+                    "Square Up",
+                    {
+                        "Type": "Button",
+                        "Description": "Sets IMUCorrector's target heading to the nearest cardinal direction (or multiple of 90 degrees)"
+                    }
+                ]
+            }
+        },
+        "Select": {
+            "Default": {
+                "Action": [
+                    "Change Max. Drive Power",
+                    {
+                        "Type": "Button",
+                        "Description": "Change the maximum drive power by a certain amount",
+                        "Parameters": {
+                            "By": {
+                                "Type": "double",
+                                "Value": "-0.1"
+                            }
+                        }
+                    }
+                ],
+                "Type": "Trigger"
+            }
+        },
+        "Start": {
+            "Default": {
+                "Action": [
+                    "Change Max. Drive Power",
+                    {
+                        "Type": "Button",
+                        "Description": "Change the maximum drive power by a certain amount",
+                        "Parameters": {
+                            "By": {
+                                "Type": "double",
+                                "Value": "0.1"
+                            }
+                        }
+                    }
+                ],
+                "Type": "Trigger"
+            }
+        }
+    },
+    "Axes": {
+        "LSX": {
+            "Default": {
+                "Type": "Exponential",
+                "Scaling": "2.0",
+                "Action": [
+                    "Turn",
+                    {
+                        "Type": "Axis",
+                        "Description": "Turning movement",
+                        "Safety Multiplier": "1"
+                    }
+                ]
+            }
+        },
+        "RSX": {
+            "Default": {
+                "Type": "Linear",
+                "Scaling": "1.0",
+                "Action": [
+                    "Strafe",
+                    {
+                        "Type": "Axis",
+                        "Description": "Left and right movement without turning",
+                        "Safety Multiplier": "1"
+                    }
+                ]
+            }
+        },
+        "LSY": {
+            "Default": {
+                "Type": "",
+                "Scaling": "1.0",
+                "Action": ""
+            }
+        },
+        "RSY": {
+            "Default": {
+                "Type": "",
+                "Scaling": "1.0",
+                "Action": ""
+            }
+        },
+        "R2": {
+            "Default": {
+                "Type": "Linear",
+                "Scaling": "1.0",
+                "Action": [
+                    "MergedMember",
+                    {
+                        "Parameters": {
+                            "MergePartner": {
+                                "Type": "String",
+                                "Value": "L2"
+                            },
+                            "Positive": {
+                                "Type": "boolean",
+                                "Value": "true"
+                            }
+                        }
+                    }
+                ]
+            }
+        },
+        "L2": {
+            "Default": {
+                "Type": "Linear",
+                "Scaling": "1.0",
+                "Action": [
+                    "MergedMember",
+                    {
+                        "Parameters": {
+                            "MergePartner": {
+                                "Type": "String",
+                                "Value": "R2"
+                            },
+                            "Positive": {
+                                "Type": "boolean",
+                                "Value": "false"
+                            }
+                        }
+                    }
+                ]
+            }
+        },
+        "MergedR2L2": {
+            "Default": {
+                "Type": "Merged",
+                "Scaling": "1.0",
+                "Action": [
+                    "Drive",
+                    {
+                        "Type": "Axis",
+                        "Description": "Forwards and backwards movement",
+                        "Safety Multiplier": "1"
+                    }
+                ]
+            }
+        }
+    },
+    "Actions": {}
+}

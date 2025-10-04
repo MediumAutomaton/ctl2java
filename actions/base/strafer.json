@@ -1,0 +1,60 @@
+{
+  "Version": 1,
+
+  "Season": "",
+
+  "Actions": {
+
+    "Drive": {
+      "Type": "Axis",
+      "SafetyMultiplier": 1.0,
+      "Code": [
+        "double driveVal = <~myname>.value();",
+        "if ( !driveSet && !( -0.01 < driveVal && driveVal < 0.01 ) ) {",
+        "\tdrive = <~myname>.value();",
+        "\tdriveSet = true;",
+        "}"
+      ]
+    },
+
+    "Turn": {
+      "Type": "Axis",
+      "SafetyMultiplier": 1.0,
+      "Code": [
+        "double turnVal = <~myname>.value();",
+        "if ( !turnSet && ! ( -0.01 < turnVal && turnVal < 0.01 ) ) {",
+        "\tturn = <~myname>.value();",
+        "\tturnSet = true;",
+        "}"
+      ]
+    },
+
+    "Strafe": {
+      "Type": "Axis",
+      "SafetyMultiplier": 1.0,
+      "Code": [
+        "double strafeVal = <~myname>.value();",
+        "if ( !strafeSet && !( -0.01 < strafeVal && strafeVal < 0.01 ) ) {",
+        "\tstrafe = <~myname>.value();",
+        "\tstrafeSet = true;",
+        "}"
+      ]
+    },
+
+    "Change Max. Drive Power": {
+      "Type": "Button",
+      "Parameters": {
+        "By": {
+          "Type": "double",
+          "Value": 0.1
+        }
+      },
+      "Code": [
+        "if ( <~myname>.isActive() ) {",
+        "\tstate.setMaxDriveSpeed( state.getMaxDriveSpeed() + <~param:By> );",
+        "}"
+      ]
+    }
+
+  }
+}

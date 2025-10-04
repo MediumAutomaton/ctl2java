@@ -1,0 +1,360 @@
+﻿{
+    "Version": "1",
+    "Gamepad": "2",
+    "Season": "fy23",
+    "Positions": {
+        "DPad": {
+            "X": "-232",
+            "Y": "51"
+        },
+        "A": {
+            "X": "53",
+            "Y": "29"
+        },
+        "B": {
+            "X": "90",
+            "Y": "65"
+        },
+        "X": {
+            "X": "14",
+            "Y": "65"
+        },
+        "Y": {
+            "X": "53",
+            "Y": "101"
+        },
+        "Start": {
+            "X": "-41",
+            "Y": "84"
+        },
+        "Select": {
+            "X": "-140",
+            "Y": "84"
+        },
+        "PS": {
+            "X": "-92",
+            "Y": "84"
+        },
+        "R1": {
+            "X": "52",
+            "Y": "141"
+        },
+        "R2": {
+            "X": "52",
+            "Y": "167"
+        },
+        "L1": {
+            "X": "-229",
+            "Y": "141"
+        },
+        "L2": {
+            "X": "-229",
+            "Y": "167"
+        },
+        "LS": {
+            "X": "-151",
+            "Y": "-10"
+        },
+        "RS": {
+            "X": "-27",
+            "Y": "-10"
+        }
+    },
+    "Modifiers": {},
+    "Buttons": {
+        "X": {
+            "Default": {
+                "Type": "Trigger",
+                "Action": [
+                    "Open Claw",
+                    {
+                        "Type": "Button",
+                        "Description": "Opens claw"
+                    }
+                ]
+            }
+        },
+        "A": {
+            "Default": {
+                "Type": "Trigger",
+                "Action": [
+                    "Close Claw",
+                    {
+                        "Type": "Button",
+                        "Description": "Closes claw"
+                    }
+                ]
+            }
+        },
+        "DPadUp": {
+            "Default": {
+                "Action": [
+                    "Axis",
+                    {
+                        "Parameters": {
+                            "Axis": {
+                                "Type": "String",
+                                "Value": "PivotSlowUp"
+                            }
+                        }
+                    }
+                ],
+                "Type": "Momentary"
+            }
+        },
+        "DPadDown": {
+            "Default": {
+                "Type": "Momentary",
+                "Action": [
+                    "Axis",
+                    {
+                        "Parameters": {
+                            "Axis": {
+                                "Type": "String",
+                                "Value": "PivotSlowDown"
+                            }
+                        }
+                    }
+                ]
+            }
+        },
+        "DPadRight": {
+            "Default": {
+                "Type": "Momentary",
+                "Action": [
+                    "Axis",
+                    {
+                        "Parameters": {
+                            "Axis": {
+                                "Type": "String",
+                                "Value": "PivotMediumUp"
+                            }
+                        }
+                    }
+                ]
+            }
+        },
+        "DPadLeft": {
+            "Default": {
+                "Type": "Momentary",
+                "Action": [
+                    "Axis",
+                    {
+                        "Parameters": {
+                            "Axis": {
+                                "Type": "String",
+                                "Value": "PivotMediumDown"
+                            }
+                        }
+                    }
+                ]
+            }
+        }
+    },
+    "Axes": {
+        "LSX": {
+            "Default": {
+                "Type": "",
+                "Scaling": "1.0",
+                "Action": ""
+            }
+        },
+        "RSX": {
+            "Default": {
+                "Type": "",
+                "Scaling": "1.0",
+                "Action": ""
+            }
+        },
+        "LSY": {
+            "Default": {
+                "Type": "Linear",
+                "Scaling": "1.0",
+                "Action": [
+                    "Pivot",
+                    {
+                        "Type": "Axis",
+                        "Description": "Pivot arm up and down",
+                        "Safety Multiplier": "1"
+                    }
+                ]
+            }
+        },
+        "RSY": {
+            "Default": {
+                "Type": "",
+                "Scaling": "1.0",
+                "Action": ""
+            }
+        },
+        "R2": {
+            "Default": {
+                "Type": "Linear",
+                "Scaling": "1.0",
+                "Action": [
+                    "MergedMember",
+                    {
+                        "Parameters": {
+                            "MergePartner": {
+                                "Type": "String",
+                                "Value": "L2"
+                            },
+                            "Positive": {
+                                "Type": "boolean",
+                                "Value": "true"
+                            }
+                        }
+                    }
+                ]
+            }
+        },
+        "L2": {
+            "Default": {
+                "Type": "Linear",
+                "Scaling": "1.0",
+                "Action": [
+                    "MergedMember",
+                    {
+                        "Parameters": {
+                            "MergePartner": {
+                                "Type": "String",
+                                "Value": "R2"
+                            },
+                            "Positive": {
+                                "Type": "boolean",
+                                "Value": "false"
+                            }
+                        }
+                    }
+                ]
+            }
+        },
+        "MergedR2L2": {
+            "Default": {
+                "Type": "Merged",
+                "Scaling": "1.0",
+                "Action": [
+                    "Extend",
+                    {
+                        "Type": "Axis",
+                        "Description": "Extend arm in and out",
+                        "Safety Multiplier": "1"
+                    }
+                ]
+            }
+        },
+        "PivotSlowUp": {
+            "Default": {
+                "Type": "Linear",
+                "Scaling": "0.15",
+                "Action": [
+                    "MergedMember",
+                    {
+                        "Parameters": {
+                            "MergePartner": {
+                                "Type": "String",
+                                "Value": "PivotSlowDown"
+                            },
+                            "Positive": {
+                                "Type": "boolean",
+                                "Value": "true"
+                            }
+                        }
+                    }
+                ]
+            }
+        },
+        "PivotSlowDown": {
+            "Default": {
+                "Type": "Linear",
+                "Scaling": "0.15",
+                "Action": [
+                    "MergedMember",
+                    {
+                        "Parameters": {
+                            "MergePartner": {
+                                "Type": "String",
+                                "Value": "PivotSlowUp"
+                            },
+                            "Positive": {
+                                "Type": "boolean",
+                                "Value": "false"
+                            }
+                        }
+                    }
+                ]
+            }
+        },
+        "PivotMediumUp": {
+            "Default": {
+                "Type": "Linear",
+                "Scaling": "0.2",
+                "Action": [
+                    "MergedMember",
+                    {
+                        "Parameters": {
+                            "MergePartner": {
+                                "Type": "String",
+                                "Value": "PivotMediumDown"
+                            },
+                            "Positive": {
+                                "Type": "boolean",
+                                "Value": "true"
+                            }
+                        }
+                    }
+                ]
+            }
+        },
+        "PivotMediumDown": {
+            "Default": {
+                "Type": "Linear",
+                "Scaling": "0.2",
+                "Action": [
+                    "MergedMember",
+                    {
+                        "Parameters": {
+                            "MergePartner": {
+                                "Type": "String",
+                                "Value": "PivotMediumUp"
+                            },
+                            "Positive": {
+                                "Type": "boolean",
+                                "Value": "false"
+                            }
+                        }
+                    }
+                ]
+            }
+        },
+        "MergedPivotSlowUpPivotSlowDown": {
+            "Default": {
+                "Type": "Merged",
+                "Scaling": "1.0",
+                "Action": [
+                    "Pivot",
+                    {
+                        "Type": "Axis",
+                        "Description": "Pivot arm up and down",
+                        "Safety Multiplier": "1"
+                    }
+                ]
+            }
+        },
+        "MergedPivotMediumUpPivotMediumDown": {
+            "Default": {
+                "Type": "Merged",
+                "Scaling": "1.0",
+                "Action": [
+                    "Pivot",
+                    {
+                        "Type": "Axis",
+                        "Description": "Pivot arm up and down",
+                        "Safety Multiplier": "1"
+                    }
+                ]
+            }
+        }
+    },
+    "Actions": {}
+}
