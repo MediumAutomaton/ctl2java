@@ -1,16 +1,7 @@
 # Some data for CTL2Java
-# File last updated 9-8-25
+# File last updated 10-05-25
 
 assetsVersion = "1.0-0"
-
-# Update this first item to match your TeamCode layout
-# You may need to add things to support additional Method libraries.
-# See their READMEs for what they need.
-# Don't update anything else in here unless you're quite familiar with CTL2Java!
-# Expander tags:
-# <~tc> -> "org.firstinspires.ftc.teamcode"
-# importLocations = {"primitives": "<~tc>.framework.ctlpad.primitives",
-#                    "DTS": "<~tc>.framework.units.DTS", }
 
 # This directly affects what Library categories CTL2Java tries to load and where
 # it tries to load them from.
@@ -28,7 +19,6 @@ libDirs = {"BaseActions": "actions/base",
 # <~seasonInterfaceClass> - the name of the Interface, without the complete package path
 # <~seasonState> - the State class used for the selected season
 # <~seasonStateClass> - the name of the Class, without the complete package path
-# (Actually, no, I never implemented this) anything specified in importLocations above (e.g. <~primitives>)
 
 indyStartTemplateLines = ["package <~package>;",
                           "",

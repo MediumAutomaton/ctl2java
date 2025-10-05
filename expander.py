@@ -1,12 +1,12 @@
 # Expand expander tags
-# File last updated 9-29-25
+# File last updated 10-05-25
 
 import assets
 from common import Common
 
 class Expander:
     def __init__(self, expandedLibDict, sortedMappings, outFile, outPackage):
-        self.version = "1.0-0"
+        self.version = 1
         self.libs = expandedLibDict
         self.sortedMappings = sortedMappings
         self.outPackage = outPackage
@@ -24,7 +24,6 @@ class Expander:
         out = ""
         while line.count("<~") > 0:
             tagStart = line.index("<~")
-            # tagEnd = line.index(">")
 
             out += line[ : tagStart ]
             line = line[ tagStart : ]
@@ -86,30 +85,6 @@ class Expander:
             if not (tagContent in self.libs["BaseActions"].keys() or tagContent in self.libs["ExtensionActions"].keys()):
                 Common.error("'all:' tag refers to Action '" + tagContent + "' that doesn't seem to exist?")
 
-            # mappingsForAction = self.sortedMappings[tagContent]
-
-            # Expand and gather them all
-            # out = ""
-            # for mappingName in mappingsForAction.keys():
-            #     mapping = mappingsForAction[mappingName]
-            #     if len(mapping) > 1:
-            #         for idx, modifierName in enumerate(mapping.keys()):
-            #             modifier = mapping[modifierName]
-            #             if idx > 1:
-            #                 out += "else "
-            #             if modifierName != "Default":
-            #                 out += "if (" + modifierName.lower() + ".isActive) {\n"
-            #                 out += self.getAndExpandActionForMapping(tagContent, modifier["Parameters"])
-            #                 out += "\n}"
-            #         out += "else {\n"
-            #         out += self.getAndExpandActionForMapping(mapping, mapping["Default"])
-            #         out += "}"
-            #     else:
-            #         out += self.getAndExpandActionForMapping(mapping, mapping["Default"])
-
-            # Gather all Mappings mapped to this Action
-            # mappingsToAdd = []
-            # actionCodes = []
             outLines = []
             for mappingName in self.sortedMappings.keys():
                 mapping = self.sortedMappings[mappingName]
@@ -128,9 +103,6 @@ class Expander:
                             outLine = "\tif ( "
                             startLen = len(outLine)
                             for idx, modName in enumerate(mapping.keys()):
-                                # outLines.append("if !( " + gamepadNumber + modName + ".isActive() ) {")
-                                # outLines.extend( [ "\t"+line for line in modifierCodes[0]["Code"].split("\n") ] )
-                                # outLines.append("}")
                                 if modName != "Default":
                                     if len(outLine) > startLen:
                                         outLine += " && "
@@ -151,35 +123,6 @@ class Expander:
                         outLines.append("\tif (" + gamepadNumber + modifierCode["Name"] + ".isActive()) {")
                         outLines.extend( [ "\t\t\t"+line for line in modifierCode["Code"].split("\n") ] )
                         outLines.append("\t\t}")
-
-                # if len(modifierCodes) > 0:
-                #     if not (len(modifierCodes) == 1 and modifierCodes[0]["Name"] == "Default"):
-                #         for modifierCode in modifierCodes:
-                #             outLines.append("if (" + modifierCode["Name"] + ".isActive()) {")
-                #             outLines.extend( [ "\t"+line+"\n" for line in modifierCode["Code"].split("\n") ] )
-                #             outLines.append("}")
-
-
-
-                        # if modifierName != "Default":
-                        #     outLines.append("if (" + modifierName + ".isActive()) {")
-                        # actionCodeLines = self.getAndExpandActionForModifier(mapping, modifierName)
-                        # Indent all lines of Action code
-                        # actionCodeLines = ["\t"+line for line in actionCodeLines]
-                        # for idx, line in enumerate(actionCodeLines):
-                        #     actionCodeLines[idx] = "\t" + line
-                        #     outLines.append(actionCodeLines[idx])
-                        # outLines.extend(actionCodeLines)
-                        # if modifierName != "Default":
-                        #     outLines.append("}")
-                        # mappingsToAdd.append(mapping)
-
-            # Indent all lines of Action code
-            # newout = ""
-            # for line in out.split("\n"):
-            #     newout += "\t"
-            #     newout += line
-            #     newout += "\n"
 
             # Expanded line is now many lines; reduce to one line and return
             newout = ""
@@ -318,10 +261,6 @@ class Expander:
                 Common.error("(internal error! report to a CTL2Java developer) Found <~getClassLines> before it became valid")
         elif tag == "getImportLines":
             if self.importLines:
-                # out = ""
-                # for line in self.importLines:
-                #     out += "import " + self.expandLine( line, "FilePath" ) + ";\n"
-                # return out
                 return self.importLines
             else:
                 Common.error("(internal error! report to a CTL2Java developer) Found <~getImportLines> before it became valid")

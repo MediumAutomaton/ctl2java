@@ -7,6 +7,10 @@ import traceback
 
 class Common:
     @staticmethod
+    def getVersion():
+        return 1
+
+    @staticmethod
     def error(msg, exc=False):
         if exc:
             print(msg + " More detailed info. below.")
