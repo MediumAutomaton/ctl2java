@@ -1,7 +1,7 @@
 # Some data for CTL2Java
-# File last updated 10-05-25
+# File last updated 11-04-25
 
-assetsVersion = "1.0-0"
+assetsVersion = 1
 
 # This directly affects what Library categories CTL2Java tries to load and where
 # it tries to load them from.
