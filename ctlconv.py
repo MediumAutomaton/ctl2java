@@ -315,6 +315,7 @@ class CTLConv:
                                 Common.error("Invalid Type set for button '" + buttonName + "' modifier '" + modifier + "'.")
 
                         # Verify Action mapping
+                        action = mapping["Action"]
                         if action in list[None, "", [], {}]:
                             modifiersToDel.append(modifier)
                             print("Button '" + buttonName + "' modifier '" + modifier + "' has no Action set and will be ignored.")

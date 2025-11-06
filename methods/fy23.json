@@ -29,6 +29,7 @@
       "boolean clawSet = false;",
       "<~all:Open Claw>",
       "<~all:Close Claw>",
+      "<~all:Set Claw State>",
       "}"
     ],
     "setLaunchPlane": [
