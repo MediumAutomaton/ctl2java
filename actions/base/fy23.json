@@ -45,6 +45,22 @@
       ]
     },
 
+    "Set Claw State": {
+      "Type": "Button",
+      "Parameters": {
+        "State": {
+          "Type": "Enum",
+          "Value": "Claw.State.OPEN"
+        }
+      },
+      "Code": [
+        "if ( !clawSet && <~myname>.isActive() ) {",
+        "\tstate.setClawState( <~param:State> );",
+        "\tclawSet = true;",
+        "}"
+      ]
+    },
+
     "Launch Drone": {
       "Type": "Button",
       "Code": [

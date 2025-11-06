@@ -236,7 +236,8 @@ validDataTypes = ["byte",
                   "double",
                   "boolean",
                   "char",
-                  "String"]
+                  "String",
+                  "Enum"]
 
 libActionRequiredFields = ["Type",
                            "Code"]

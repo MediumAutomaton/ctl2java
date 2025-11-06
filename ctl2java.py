@@ -86,17 +86,26 @@ else:
 
 # ----- Convert files -----
 converter1 = CTLConv(infile1, assets.gamepadRequiredFields)
-if not (converter1.version <= ctlconvCompatInterval[0] and ctlconvCompatInterval[1] >= converter1.version):
+if converter1.version < ctlconvCompatInterval[0] or ctlconvCompatInterval[1] > converter1.version:
     Common.error("Incompatible version of ctlconv.py")
 print("Converting file for gamepad1:")
 outdict1 = converter1.getVerifiedDict()
-modifiers = [ "One" + x for x in outdict1["Modifiers"] ]
+try:
+    modifiers = [ "One" + x for x in outdict1["Modifiers"] ]
+except:
+    modifiers = []
 print("\n\n")
 if infile2:
     converter2 = CTLConv(infile2, assets.gamepadRequiredFields)
     print("Converting file for gamepad2:")
     outdict2 = converter2.getVerifiedDict()
-    modifiers.extend( [ "Two" + x for x in outdict2["Modifiers"] ] )
+    try:
+        modifiers.extend( [ "Two" + x for x in outdict2["Modifiers"] ] )
+    except:
+        try:
+            modifiers = [ "Two" + x for x in outdict2["Modifiers"] ]
+        except:
+            modifiers = []
     print("\n\n")
 else:
     outdict2 = None
