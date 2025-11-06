@@ -1,7 +1,7 @@
 # Prepare all the imported stuff (Action & Method libraries & Mappings) in a way
 # that will be convenient later. Sort stuff and do some higher-level checks than
 # ctlconv did.
-# File last updated 9-8-25
+# File last updated 10-05-25
 
 import assets
 from common import Common
@@ -9,7 +9,7 @@ from common import Common
 
 class Preparer:
     def __init__(self, mappings1, mappings2, libDict):
-        self.version = "1.0-0"
+        self.version = 1
         self.mappings1 = mappings1
         self.mappings2 = mappings2
         self.libDict = libDict
@@ -24,8 +24,6 @@ class Preparer:
 
         if not self.settersLib["Season"] == self.mappings1["Season"]:
             Common.error("Gamepads' Season does not match Setters' Season.")
-
-        # self.season = self.settersLib["Season"]
 
         # Libraries are valid for this Season
         newLibDict = {}
@@ -51,14 +49,7 @@ class Preparer:
         self.baseLibs = self.libDict["BaseActions"]
         self.extensionLibs = self.libDict["ExtensionActions"]
         self.methodLibs = self.libDict["Methods"]
-        # self.settersLib = self.libDict["Setters"][self.season]
 
-        # Gamepads were given as expected
-        # try:  # Should be in ctlconv.py
-        #     self.mappings1["Gamepad"] = int(self.mappings1["Gamepad"])
-        #     self.mappings2["Gamepad"] = int(self.mappings2["Gamepad"])
-        # except:
-        #     Common.error("Your 'Gamepad' fields in the mapping files are of the wrong type!")
         if not self.mappings1["Gamepad"] == 1:
             Common.error("Got gamepad" + self.mappings1["Gamepad"] + " where I expected gamepad1")
         if self.mappings2:
@@ -67,19 +58,16 @@ class Preparer:
 
 
         # Expand libDict and combine all Libraries in each category together
-        # self.baseLibs = libDict["BaseActions"]
         self.base = {}
         for libName in self.baseLibs.keys():
             for actionName in self.baseLibs[libName]["Actions"].keys():
                 self.base.update( {actionName : self.baseLibs[libName]["Actions"][actionName]} )
 
-        # self.extensionLibs = libDict["ExtensionActions"]
         self.extension = {}
         for libName in self.extensionLibs.keys():
             for actionName in self.extensionLibs[libName]["Actions"].keys():
                 self.extension.update( {actionName : self.extensionLibs[libName]["Actions"][actionName]} )
 
-        # self.methodLibs = libDict["Methods"]
         self.methods = {}
         self.constructorLines = []
         self.classLines = []
@@ -96,7 +84,6 @@ class Preparer:
                 else:
                     self.methods.update( {methodName : self.methodLibs[libName]["Methods"][methodName]} )
 
-        # self.settersLib = libDict["Setters"]
         self.setters = self.settersLib["Setters"]
 
 
@@ -123,11 +110,6 @@ class Preparer:
         # All Setters are implemented by Methods
         happySetters = []
         for methodName in self.methods.keys():
-            # Strip drive type tag, if it's there
-            # tagEnd = methodName.find(">")
-            # if tagEnd > 0:
-            #     methodName = methodName[tagEnd+1:]
-
             if methodName not in happySetters:
                 happySetters.append(methodName)
 
@@ -145,47 +127,12 @@ class Preparer:
             Common.error("The following Setters are not implemented by Methods: " + str(unhappySetters))
 
 
-    # def sortMappingsByAction(self):
-    #     primitives = self.mappings1["Buttons"]
-    #     primitives.update(self.mappings1["Axes"])
-    #     if self.mappings2:
-    #         primitives.update(self.mappings2["Buttons"])
-    #         primitives.update(self.mappings2["Axes"])
-    #
-    #     actionDict = {}
-    #     for primitiveName in primitives.keys():
-    #         primitive = primitives[primitiveName]
-    #         action = primitive["Action"]
-    #         if action["Name"] not in actionDict.keys():
-    #             actionDict.update( { action["Name"] : {primitiveName : primitive } } )
-    #         actionDict[action["Name"]].update( {primitiveName : primitive} )
-
-        # actionDict = {}
-        # for primitiveName in primitives.keys():
-        #     primitive = primitives[primitiveName]
-        #     primitiveDict = {}
-        #     modifierDict = {}
-        #     for modifierName in primitive.keys():
-        #         modifier = primitive[modifierName]
-        #         # modifierDict = {}
-        #         action = modifier["Action"]
-        #         modifierDict.update( { modifierName : action["Parameters"] } )
-        #     primitiveDict.update( { primitiveName : modifierDict } )
-        #     actionDict.update( { action["Name"] : primitiveDict } )
-
-        # return actionDict
-
-
     def addPrefixes(self, primitives, gamepadNumber):
         newPrimitives = {}
         for primitiveName in primitives.keys():
             primitive = primitives[primitiveName]
             newPrimitiveName = str(gamepadNumber) + primitiveName
             newPrimitives.update( { newPrimitiveName : primitive } )
-            # for modifierName in primitive.keys():
-            #     modifier = primitive[modifierName]
-            #     newModifierName = str(gamepadNumber) + modifierName
-            #     newPrimitives.update( { newModifierName : modifier } )
         return newPrimitives
 
 

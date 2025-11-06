@@ -1,6 +1,6 @@
 # The code generator itself! Thanks to all the prepwork, this just strings
 # already prepared sections together.
-# File last updated 9-29-25
+# File last updated 10-05-25
 
 import assets
 from common import Common
@@ -8,7 +8,7 @@ from common import Common
 
 class Generator:
     def __init__( self, sortedMappings, expander, constructorLines, classLines, setters, importLines, modifiers, driveType, debug ):
-        self.version = "1.0-0"
+        self.version = 1
         self.sortedMappings = sortedMappings
         self.expander = expander
         self.constructorLines = constructorLines
@@ -153,15 +153,7 @@ class Generator:
                 else:
                     # Split merged Axes
                     if modifier["Action"]["Name"] == "MergedMember":
-                        # splitNames = self.splitMergedAxisName( mappingName )
                         mergedMembers.append( [ modifier, modifierName, mappingName ] )
-                        # if self.stripGamepadNumber( mappingName ) not in assets.validAxes:
-                        #     fakeAxes.append( [ modifier, modifierName, mappingName ] )
-                        # splitNames = [ mappingName ]
-                    # else:
-                    # splitNames = [ mappingName ]
-                    # Whether it was split or not, we can iterate over it just the same
-                    # for name in splitNames:
                     mapping = self.sortedMappings[ mappingName ]
                     # Sort out fakes
                     if modifierType[:-6] in assets.validButtonTypes and self.stripGamepadNumber( mappingName ) not in assets.validButtons:
@@ -204,7 +196,6 @@ class Generator:
             gamepadField = self.modifierNameToGamepadField( realMappingName )
             fakeType = self.mappingTypeToCTLPadType(fakeModifier["Type"])
             realType = self.mappingTypeToCTLPadType(realModifier["Type"])
-            # realAxisLine = self.createPrimitiveConstructorLine( fakeModifier["Type"], fakeMappingName, fakeModifierName, gamepadField )
             outLine = fakeMappingName + fakeModifierName + " = new AxisAsButton( new " + realType + "( () -> " + gamepadField + " ) );"
             outLines.append(outLine)
 
@@ -236,7 +227,6 @@ class Generator:
             gamepadField = self.modifierNameToGamepadField( realMappingName )
             fakeType = self.mappingTypeToCTLPadType(fakeModifier["Type"])
             realType = self.mappingTypeToCTLPadType(realModifier["Type"])
-            # realAxisLine = self.createPrimitiveConstructorLine( fakeModifier["Type"], fakeMappingName, fakeModifierName, gamepadField )
             outLine = fakeMappingName + fakeModifierName + " = new ButtonAsAxis( new " + realType + "( () -> " + gamepadField + " ), " + str(fakeModifier["Scaling"]) + " );"
             outLines.append(outLine)
 
@@ -265,19 +255,6 @@ class Generator:
         for pair in mergedPairs:
             if len(pair) < 2:
                 Common.error("Couldn't find MergePartner for MergedMember '" + pair[0][2] + "' modifier '" + pair[0][1] + "'.")
-
-        # Next, add a Constructor line for each MergedMember.
-        # Except actually don't because we already did that!
-        # for pair in mergedPairs:
-        #     for member in pair:
-        #         mapping = member[0]
-        #         modifierName = member[1]
-        #         mappingName = member[2]
-        #         if modifierName in assets.validAxes:
-        #             gamepadField = self.modifierNameToGamepadField( modifierName )
-        #             outLines.append( self.createPrimitiveConstructorLine( mapping[modifierName]["Type"], mappingName, modifierName, gamepadField, mapping[modifierName]["Scaling"] ) )
-        #         else:
-        #
 
         # Next, add a Constructor line for each MergedAxis.
         for axis in mergedAxes:
@@ -374,10 +351,7 @@ class Generator:
             self.expander.setImportLines( "\n" )
 
         self.classLines.extend( self.getPrimitiveClassLines() )
-        # if len(self.classLines) > 0:
         self.expander.setClassLines( self.stringify( self.indentLines (self.classLines, 1 ) ) )
-        # else:
-        #     self.expander.setClassLines( "\n" )
 
         if self.driveType == "fieldy":
             outLines.extend( self.expandTemplate( assets.fieldyStartTemplateLines ) )
@@ -391,7 +365,6 @@ class Generator:
         setterMethods = self.getSetterMethods()
         for method in setterMethods:
             outLines.append( method )
-            # outLines.append( "" )
 
         self.expander.setStateInteriorLines( self.stringify( self.indentLines( self.getStateInteriorLines(), 2 ) ) )
 
