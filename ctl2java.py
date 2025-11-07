@@ -1,6 +1,6 @@
 # CTL2Java CLI and linking fabric
 # Also all File I/O happens here (I think)
-# File last updated 10-05-25
+# File last updated 11-06-25
 
 import os
 import sys
@@ -13,21 +13,21 @@ from preparer import Preparer
 from expander import Expander
 from generator import Generator
 
-version = 1
-prettyVersion = "1.0-1"
+version = 2
+prettyVersion = "1.0-2"
 
 # Versions of the other modules are tracked independently
 commonCompatInterval = (1, 1)
 assetsCompatInterval = (1, 1)
-ctlconvCompatInterval = (1, 2)
+ctlconvCompatInterval = (1, 3)
 preparerCompatInterval = (1, 1)
 expanderCompatInterval = (1, 1)
-generatorCompatInterval = (1, 1)
+generatorCompatInterval = (1, 2)
 
-if not (Common.getVersion() <= commonCompatInterval[0] and commonCompatInterval[1] >= Common.getVersion()):
+if Common.getVersion() < commonCompatInterval[0] or commonCompatInterval[1] > Common.getVersion():
     print("Incompatible version of common.py")
     sys.exit(1)
-if not (assets.assetsVersion <= assetsCompatInterval[0] and assetsCompatInterval[1] >= assets.assetsVersion):
+if assets.assetsVersion < assetsCompatInterval[0] or assetsCompatInterval[1] > assets.assetsVersion:
     Common.error("Incompatible version of assets.py")
 
 # ----- Command-line arguments -----
@@ -162,7 +162,7 @@ if args.debug:
 
 # ----- Preparer -----
 preparer = Preparer(outdict1, outdict2, libDict)
-if not (preparer.version <= preparerCompatInterval[0] and preparerCompatInterval[1] >= preparer.version):
+if preparer.version < preparerCompatInterval[0] or preparerCompatInterval[1] > preparer.version:
     Common.error("Incompatible version of preparer.py")
 expandedLibDict = preparer.expandLibDict()
 sortedMappings = preparer.combineMappingsAndAddPrefixes()
@@ -170,7 +170,7 @@ sortedMappings = preparer.combineMappingsAndAddPrefixes()
 
 # ----- Create expander -----
 expander = Expander(expandedLibDict, sortedMappings, outfile, outpackage)
-if not (expander.version <= expanderCompatInterval[0] and expanderCompatInterval[1] >= expander.version):
+if expander.version < expanderCompatInterval[0] or expanderCompatInterval[1] > expander.version:
     Common.error("Incompatible version of expander.py")
 
 
@@ -186,7 +186,7 @@ generator = Generator(
     drivetype,
     args.debug
 )
-if not (generator.version <= generatorCompatInterval[0] and generatorCompatInterval[1] >= generator.version):
+if generator.version < generatorCompatInterval[0] or generatorCompatInterval[1] > generator.version:
     Common.error("Incompatible version of generator.py")
 generatedLines = generator.getFile()
 

@@ -1,4 +1,4 @@
-# File last updated 10-05-25
+# File last updated 11-06-25
 
 # Convert CTL file to dictionary, verify integrity and fix known bugs from graphical editors
 # A rather lenient checker that lets graphical editors hide their own data all over the place if they want to.
@@ -35,7 +35,7 @@ from common import Common
 
 class CTLConv:
     def __init__(self, infile, requiredFields):
-        self.version = 2
+        self.version = 3
         self.infile = infile
         self.requiredFields = requiredFields
         self.convertedDict = {} # just json.load(), for getConverted()
@@ -105,7 +105,7 @@ class CTLConv:
         # Values are of correct types
         for key in action.keys():
             if not isinstance(action[key], assets.actionTypes[key]):
-                if not (key == "Parameters" and action[key] == None): # Empty Parameters are OK
+                if not (key == "Parameters" and action[key] in [None, ""]): # Empty Parameters are OK
                     Common.error("Value for key '" + str(key) + "' of Action mapping for Primitive '" + buttonName + "' modifier '" + modifier + "' is of the wrong type.")
 
         # Verify Parameters
