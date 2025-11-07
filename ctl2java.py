@@ -24,10 +24,10 @@ preparerCompatInterval = (1, 1)
 expanderCompatInterval = (1, 1)
 generatorCompatInterval = (1, 1)
 
-if not (Common.getVersion() <= commonCompatInterval[0] and commonCompatInterval[1] >= Common.getVersion()):
+if Common.getVersion() < commonCompatInterval[0] or commonCompatInterval[1] > Common.getVersion():
     print("Incompatible version of common.py")
     sys.exit(1)
-if not (assets.assetsVersion <= assetsCompatInterval[0] and assetsCompatInterval[1] >= assets.assetsVersion):
+if assets.assetsVersion < assetsCompatInterval[0] or assetsCompatInterval[1] > assets.assetsVersion:
     Common.error("Incompatible version of assets.py")
 
 # ----- Command-line arguments -----
@@ -86,7 +86,7 @@ else:
 
 # ----- Convert files -----
 converter1 = CTLConv(infile1, assets.gamepadRequiredFields)
-if not (converter1.version <= ctlconvCompatInterval[0] and ctlconvCompatInterval[1] >= converter1.version):
+if converter1.version < ctlconvCompatInterval[0] or ctlconvCompatInterval[1] > converter1.version:
     Common.error("Incompatible version of ctlconv.py")
 print("Converting file for gamepad1:")
 outdict1 = converter1.getVerifiedDict()
@@ -153,7 +153,7 @@ if args.debug:
 
 # ----- Preparer -----
 preparer = Preparer(outdict1, outdict2, libDict)
-if not (preparer.version <= preparerCompatInterval[0] and preparerCompatInterval[1] >= preparer.version):
+if preparer.version < preparerCompatInterval[0] or preparerCompatInterval[1] > preparer.version:
     Common.error("Incompatible version of preparer.py")
 expandedLibDict = preparer.expandLibDict()
 sortedMappings = preparer.combineMappingsAndAddPrefixes()
@@ -161,7 +161,7 @@ sortedMappings = preparer.combineMappingsAndAddPrefixes()
 
 # ----- Create expander -----
 expander = Expander(expandedLibDict, sortedMappings, outfile, outpackage)
-if not (expander.version <= expanderCompatInterval[0] and expanderCompatInterval[1] >= expander.version):
+if expander.version < expanderCompatInterval[0] or expanderCompatInterval[1] > expander.version:
     Common.error("Incompatible version of expander.py")
 
 
@@ -177,7 +177,7 @@ generator = Generator(
     drivetype,
     args.debug
 )
-if not (generator.version <= generatorCompatInterval[0] and generatorCompatInterval[1] >= generator.version):
+if generator.version < generatorCompatInterval[0] or generatorCompatInterval[1] > generator.version:
     Common.error("Incompatible version of generator.py")
 generatedLines = generator.getFile()
 

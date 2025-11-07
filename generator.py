@@ -196,7 +196,7 @@ class Generator:
             gamepadField = self.modifierNameToGamepadField( realMappingName )
             fakeType = self.mappingTypeToCTLPadType(fakeModifier["Type"])
             realType = self.mappingTypeToCTLPadType(realModifier["Type"])
-            outLine = fakeMappingName + fakeModifierName + " = new AxisAsButton( new " + realType + "( () -> " + gamepadField + " ) );"
+            outLine = fakeMappingName + fakeModifierName + " = new AxisAsButton( new " + realType + "( () -> " + gamepadField + " ), " + str(realModifier["Action"]["Parameters"]["Threshold"]["Value"]) + "  );"
             outLines.append(outLine)
 
 
