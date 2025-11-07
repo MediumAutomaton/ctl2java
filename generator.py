@@ -8,7 +8,7 @@ from common import Common
 
 class Generator:
     def __init__( self, sortedMappings, expander, constructorLines, classLines, setters, importLines, modifiers, driveType, debug ):
-        self.version = 1
+        self.version = 2
         self.sortedMappings = sortedMappings
         self.expander = expander
         self.constructorLines = constructorLines
@@ -70,7 +70,7 @@ class Generator:
         elif type == "Axis":
             return "AxisAsButton"
         elif type == "Button":
-            return "ButtonAxAxis"
+            return "ButtonAsAxis"
         elif type == "Exponential":
             return "ExponentialAxis"
         elif type == "Linear":
@@ -196,7 +196,7 @@ class Generator:
             gamepadField = self.modifierNameToGamepadField( realMappingName )
             fakeType = self.mappingTypeToCTLPadType(fakeModifier["Type"])
             realType = self.mappingTypeToCTLPadType(realModifier["Type"])
-            outLine = fakeMappingName + fakeModifierName + " = new AxisAsButton( new " + realType + "( () -> " + gamepadField + " ) );"
+            outLine = fakeMappingName + fakeModifierName + " = new AxisAsButton( new " + realType + "( () -> " + gamepadField + " ), " + str(realModifier["Action"]["Parameters"]["Threshold"]["Value"]) + "  );"
             outLines.append(outLine)
 
 
